@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(go)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++11 -g)
 
 set(Boost_USE_STATIC_LIBS ON)
 
