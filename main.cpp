@@ -10,22 +10,23 @@
 int Failed(std::string text);
 
 using namespace boost;
-using namespace boost::filesystem;
+namespace fs = boost::filesystem;
 
 class Repo
 {
 private:
-	path _path;
+	fs::path _path;
 
 public:
-	Repo(directory_entry dir)
+	Repo(fs::directory_entry dir)
 	{
 		_path = dir.path();
 	}
 
 	std::string GetName() const
 	{
-		return _path.stem().c_str();
+		auto p =  _path.filename().c_str();
+		return p;
 	}
 };
 
@@ -35,21 +36,19 @@ private:
 	std::vector<Repo> _repos;
 
 public:
-	Go(path root)
+	Go(fs::path root)
 	{
 		if (!exists(root))
 			return;
 
-		std::vector<directory_entry> contents;
+		std::vector<fs::directory_entry> contents;
 		std::copy(
-				directory_iterator(root), directory_iterator(),
+				fs::directory_iterator(root), fs::directory_iterator(),
 				std::back_inserter(contents));
 
 		for (auto entry : contents)
 		{
-			std::cerr << "Found '" << entry << "'\n";
-
-			if (is_directory(entry))
+			if (fs::is_directory(entry))
 			{
 				_repos.emplace_back(Repo(entry));
 			}
@@ -61,41 +60,29 @@ public:
 
 int main(int argc, char *argv[])
 {
-	//auto env = std::getenv("WORK_DIR");
-	auto env = "/home/christian/repos";
+	auto env { std::getenv("WORK_DIR") };
 	if (env == 0)
 	{
 		std::cerr << "WORK_DIR not set\n";
 		return 0;
 	}
 
-	std::string work_dir = env;
-	if (work_dir.empty())
-	{
-		std::cerr << work_dir << " doesn't exist.\n";
-		return -1;
-	}
-
-	std::cout << "Go: " << work_dir << "\n";
-
-	path root { work_dir.c_str() };
+	fs::path root { env };
 	if (!exists(root))
 	{
 		std::cerr << "Couldn't find anything in WORK_DIR='" << root.c_str() << "'\n";
 		return -1;
 	}
 
-	std::cout << "Making repos from " << root.c_str() << "\n";
-
 	Go go(root);
 	auto repos = go.GetRepos();
 
-	if (argc == 0)
+	if (argc == 1)
 	{
 		auto n = 0;
 		for (auto repo : repos)
 		{
-			std::cout << n << ": " << repo.GetName() << std::endl;
+			std::cout << n++ << ": " << repo.GetName() << std::endl;
 		}
 
 		return 0;
