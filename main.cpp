@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	std::cout << repos[repoNum].GetName();
+	std::cout << root / repos[repoNum].GetName();
 
 	return 0;
 }
