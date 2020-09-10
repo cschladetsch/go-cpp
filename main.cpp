@@ -2,8 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <iostream>
-
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -62,12 +61,31 @@ public:
 
 int main(int argc, char *argv[])
 {
-	path root { getenv("WORK_DIR") };
-	if (!exists(root))
+	//auto env = std::getenv("WORK_DIR");
+	auto env = "/home/christian/repos";
+	if (env == 0)
 	{
-		std::cerr << "Couldn't find anything in WORK_DIR='" << root.c_str() << "'";
+		std::cerr << "WORK_DIR not set\n";
+		return 0;
+	}
+
+	std::string work_dir = env;
+	if (work_dir.empty())
+	{
+		std::cerr << work_dir << " doesn't exist.\n";
 		return -1;
 	}
+
+	std::cout << "Go: " << work_dir << "\n";
+
+	path root { work_dir.c_str() };
+	if (!exists(root))
+	{
+		std::cerr << "Couldn't find anything in WORK_DIR='" << root.c_str() << "'\n";
+		return -1;
+	}
+
+	std::cout << "Making repos from " << root.c_str() << "\n";
 
 	Go go(root);
 	auto repos = go.GetRepos();
@@ -86,7 +104,7 @@ int main(int argc, char *argv[])
 	auto repoNum = boost::lexical_cast<int>(argv[1]);
 	if (repoNum < 0 || repoNum >= repos.size())
 	{
-		std::cerr << "Invalid repo number '" << repoNum << "'";
+		std::cerr << "Invalid repo number '" << repoNum << "'\n";
 		return -1;
 	}
 
