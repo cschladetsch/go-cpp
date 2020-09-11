@@ -10,7 +10,7 @@ Set the system environment variable `WORK_DIR` to be the folder that contains al
 This is all a WIP made for educational purposes at the moment. See my [YoutTube Channel](https://www.youtube.com/sp4m) for details.
 
 ## Install Build and Run
-Use CMake. The `./b` script will build the app, the `./r' script will build and run the app.
+Use CMake. The `./b` script will build the app, the `./r` script will build and run the app.
 
 ## Usage
 * `go` - show all repos
