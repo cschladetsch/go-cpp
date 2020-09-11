@@ -1,6 +1,6 @@
 # Go to Git Repository
 [![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/GoRepo/badge)](https://www.codefactor.io/repository/github/cschladetsch/GoRepo)
-[![License](https://img.shields.io/github/license/cschladetsch/gorepo.svg?label=License&maxAge=86400)](./LICENSE)
+[![License](https://img.shields.io/github/license/cschladetsch/gorepo.svg?label=License&maxAge=86400)](./LICENSE.txt)
 ![Release](https://img.shields.io/github/release/cschladetsch/gorepo.svg?label=Release&maxAge=60)
 
 Provides a fast and simple way to move between repositories.
