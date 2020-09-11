@@ -7,8 +7,6 @@
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-int Failed(std::string text);
-
 using namespace boost;
 namespace fs = boost::filesystem;
 
