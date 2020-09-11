@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 		auto n = 0;
 		for (auto repo : repos)
 		{
-			std::cout << n++ << ": " << repo.GetName() << std::endl;
+			std::cerr << n++ << ": " << repo.GetName() << std::endl;
 		}
 
 		return 0;
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	std::cout << root / repos[repoNum].GetName();
+	std::cout << repos[repoNum].GetName();
 
 	return 0;
 }
