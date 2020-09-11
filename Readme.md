@@ -9,4 +9,12 @@ Set the system environment variable `WORK_DIR` to be the folder that contains al
 * `go` - show all repos
 * `go n` - go to repo number *n*
 
+## TODO
+
+- [ ] Add colorised output
+- [ ] Add .enter and .leave scripts
+- [ ] Add persistence of location within a repo, so when you switch back to it, you do not always start at the root of the repo.
+- [ ] Add `go -` to go to previos repo (not previous directory)
+
+
 
