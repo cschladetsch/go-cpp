@@ -21,11 +21,9 @@ go()
 	# stdout is text to display
 	# stderr is commands to execute
 	eval $cmd $* 1> $next 2> $cmds
-	echo 333 $WORK_DIR $next
 
 	# used to strip out null bytes
-	args=$WORK_DIR/`cat $next` | tr '\0' '\n' 
+	args=$WORK_DIR/`cat $next`
 	cd $args
-	echo 444
 }
 
