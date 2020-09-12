@@ -10,13 +10,14 @@ Set the system environment variable `WORK_DIR` to be the folder that contains al
 This is all a WIP made for educational purposes at the moment. See my [YoutTube Channel](https://www.youtube.com/sp4m) for details.
 
 ## Install Build and Run
-Use CMake. The `./b` script will build the app, the `./r` script will build and run the app.
+Use CMake. The `./b` script will build the app, the `./r` script will build and run the app if the build worked.
 
 ## Usage
 * `go` - show all repos
 * `go n` - go to repo number *n*
 
 ## TODO
+- [x] Port to Windows (git-bash).
 - [ ] Add colorised output
 - [ ] Add .enter and .leave scripts
 - [ ] Add persistence of location within a repo, so when you switch back to it, you do not always start at the root of the repo.
