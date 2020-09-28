@@ -1,2 +1,2 @@
-./b && build/go $*
+./b && build/go-repo $*
 

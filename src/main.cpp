@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-    const RepoSet go(root);
+    	const RepoSet go(root);
 	auto repos = go.getRepos();
 
 	if (argc == 1)
@@ -39,14 +39,14 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-    const auto repoNum = boost::lexical_cast<int>(argv[1]);
+    	const auto repoNum = boost::lexical_cast<int>(argv[1]);
 	if (repoNum < 0 || repoNum >= repos.size())
 	{
 		std::cerr << "Invalid repo number '" << repoNum << "'\n";
 		return -1;
 	}
 
-	std::cout << repos[repoNum].getName();
+	std::cout << "cd " << repos[repoNum].getName();
 
 	return 0;
 }
