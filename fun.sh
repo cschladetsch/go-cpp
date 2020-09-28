@@ -2,8 +2,8 @@
 
 echo Definining $WORK_DIR functions
 
-echo Adding go
-go()
+echo Adding co
+co()
 {
 	# TODO: move to ~/bin, add to PATH
 	cmd=~/src/go/build/go
@@ -26,4 +26,6 @@ go()
 	args=$WORK_DIR/`cat $next`
 	cd $args
 }
+
+export co
 
