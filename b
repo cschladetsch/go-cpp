@@ -1,3 +1,3 @@
-pushd build && cmake .. && make && popd
+cd build && cmake .. && make && cd ..
 
 

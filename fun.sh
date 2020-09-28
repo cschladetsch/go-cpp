@@ -3,8 +3,7 @@
 echo Definining $WORK_DIR functions
 
 echo Adding co
-co()
-{
+co() {
 	# TODO: move to ~/bin, add to PATH
 	cmd=~/src/go/build/go
 	cmd=~/work/repos/go-repo/build/Debug/go-repo.exe

@@ -24,6 +24,8 @@ namespace go_repo
         // Note that on different systems, path-names can use different character encodings.
         std::string getName() const
         {
+	    return fs::basename(_path);
+	    /*
             const auto& name = _path.filename();
             auto const len = name.size();
             const auto* const first = name.c_str();
@@ -32,6 +34,7 @@ namespace go_repo
             std::vector<char> buffer(len + 1);
             std::use_facet<std::ctype<wchar_t> >(loc).narrow(first, first + len, '_', &buffer[0]);
             return std::string(buffer.begin(), buffer.end());
+	    */
         }
     };
 
