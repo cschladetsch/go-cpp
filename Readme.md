@@ -1,14 +1,20 @@
-# Go-Repo - Go to Repository ![logo](res/gorepo_logo.jpg)
+# co - Go to Repository ![logo](res/gorepo_logo.jpg)
 [![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/GoRepo/badge)](https://www.codefactor.io/repository/github/cschladetsch/GoRepo)
 [![License](https://img.shields.io/github/license/cschladetsch/gorepo.svg?label=License&maxAge=86400)](./LICENSE.txt)
 ![Release](https://img.shields.io/github/release/cschladetsch/gorepo.svg?label=Release&maxAge=60)
 
-Provides a fast and simple way to move between `git` repositories stored in an environment variable called `WORK_DIR`.
+Provides a fast and simple way to move between `git` repositories stored in an environment variable called `WORK_DIR`. Written in portable C++ using `boost::filesystem`.
 
 This is all a WIP made for educational purposes at the moment. See my [YoutTube Channel](https://www.youtube.com/sp4m) for details.
 
 ## Install Build and Run
-Use `CMake`:
+With a system using apt, use:
+```
+$ sudo apt install libboost-filessytem-dev
+```
+To get the required single boost library.
+
+Use *CMake*:
 
 ```bash
 $ mkdir -p build && cd build && cmake ..
