@@ -11,21 +11,22 @@ using namespace go_repo;
 
 int main(int argc, char* argv[])
 {
-	const auto* env{ std::getenv("WORK_DIR") };
+    const char *WORK_ROOT = "WORK_ROOT";
+	const auto* env{ std::getenv("WORK_ROOT") };
 	if (env == 0)
 	{
-		std::cerr << "WORK_DIR not set\n";
+		std::cerr << "WORK_ROOT not set\n";
 		return -1;
 	}
 
 	const fs::path root{ env };
 	if (!exists(root))
 	{
-		std::cerr << "Couldn't find anything in WORK_DIR='" << root.c_str() << "'\n";
+		std::cerr << "Couldn't find anything in WORK_ROOT='" << root.c_str() << "'\n";
 		return -1;
 	}
 
-    	const RepoSet go(root);
+    const RepoSet go(root / "repos");
 	auto repos = go.getRepos();
 
 	if (argc == 1)
@@ -39,7 +40,7 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-    	const auto repoNum = boost::lexical_cast<int>(argv[1]);
+    const auto repoNum = boost::lexical_cast<int>(argv[1]);
 	if (repoNum < 0 || repoNum >= repos.size())
 	{
 		std::cerr << "Invalid repo number '" << repoNum << "'\n";

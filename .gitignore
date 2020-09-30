@@ -1,7 +1,10 @@
 /build
+/.idea
+/cmake-build*
 
 .current
 .prev
+.next
 
 
 

@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 set(proj_name go-repo)
 project(${proj_name})
 
-# add_compile_options(-std=c++11 -g)
+add_compile_options(-std=c++11 -g)
+#add_compile_options(-Wc++11-extensions)
 
 set(Boost_USE_STATIC_LIBS ON)
 
