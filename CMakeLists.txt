@@ -3,7 +3,6 @@ set(proj_name go-repo)
 project(${proj_name})
 
 add_compile_options(-std=c++11 -g)
-#add_compile_options(-Wc++11-extensions)
 
 set(Boost_USE_STATIC_LIBS ON)
 
@@ -15,9 +14,10 @@ endif(WIN32)
 find_package(Boost 1.5 REQUIRED COMPONENTS filesystem)
 
 include_directories("include")
+include_directories("modules/libgit2/include")
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
-add_executable(${proj_name} ${sources})
+add_executable(${proj_name} ${sources} include/go-repo/repo.hpp src/Repo.cpp)
 
-target_link_libraries(${proj_name} PUBLIC Boost::filesystem)
+target_link_libraries(${proj_name} PUBLIC Boost::filesystem ~/dev/src/go-cpp/modules/libgit2/build/libgit2.a)
 

@@ -1,9 +1,9 @@
 #include "go-repo/repos-set.hpp"
+#include "git2.h"
 
 namespace go_repo
 {
     RepoSet::RepoSet(const fs::path& root)
-        : root_(root)
     {
         if (!exists(root))
             return;

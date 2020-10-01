@@ -6,6 +6,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "go-repo/repos-set.hpp"
+#include "go-repo/repo.hpp"
 
 using namespace go_repo;
 
@@ -27,14 +28,14 @@ int main(int argc, char* argv[])
 	}
 
     const RepoSet go(root / "repos");
-	auto repos = go.getRepos();
+	auto repos = go.GetRepos();
 
 	if (argc == 1)
 	{
 		auto n = 0;
 		for (auto const &repo : repos)
 		{
-			std::cerr << n++ << ": " << repo.getName() << std::endl;
+			std::cout << "echo " << n++ << ": " << repo.GetName() << std::endl;
 		}
 
 		return 0;
@@ -47,7 +48,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	std::cout << "cd " << repos[repoNum].getName();
+	std::cout << "cd " << repos[repoNum].GetName() << std::endl;
 
 	return 0;
 }
