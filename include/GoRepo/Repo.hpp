@@ -9,7 +9,6 @@
 
 namespace GoRepo {
 
-using namespace boost;
 namespace fs = boost::filesystem;
 
 class Repo {

@@ -2,25 +2,16 @@
 
 echo Definining $WORK_ROOT functions
 
-mkdir -p ~/tmp
-
 echo Adding go
 go() {
+	tmp=$WORK_ROOT/tmp
+	result=$tmp/go-cmds
 	cmd=$WORK_ROOT/repos/go-cpp/cmake-build-debug/go-repo
 
-	if [ -z "$*" ]; then
-		results=$($cmd)
-		eval $results
-		return 0
-	fi
+	mkdir -p $tmp
 
-	tmp=~/tmp
-	cmds=$tmp/cmds
-
-	# stdout is text to display
-	# stderr is commands to execute
-	eval $cmd $* 1> $cmds
-	source $cmds
+	eval $cmd $* > $result
+	source $result
 }
 
 export -f go

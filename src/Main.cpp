@@ -8,30 +8,39 @@
 
 #include "GoRepo/RepoSet.hpp"
 
-using namespace GoRepo;
+namespace fs = boost::filesystem;
+
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::getenv;
+
+using GoRepo::Repo;
+using GoRepo::RepoSet;
 
 int main(int argc, char* argv[]) {
-	const auto* env{ std::getenv("WORK_ROOT") };
-	if (env == 0) {
-		std::cerr << "WORK_ROOT not set\n";
+	const auto* env{ getenv("WORK_ROOT") };
+	if (env == nullptr) {
+		cerr << "$WORK_ROOT not set\n";
 		return -1;
 	}
 
 	const fs::path root{ env };
 	if (!exists(root)) {
-		std::cerr << "WORK_ROOT='" << root.c_str() << "' doesn't exist.\n";
+		cerr << "$WORK_ROOT='" << root.c_str() << "' doesn't exist.\n";
 		return -1;
 	}
 
     git_libgit2_init();
 
-    const RepoSet go(root / "repos");
+    const RepoSet go(root/"repos");
 	auto repos = go.GetRepos();
 
 	if (argc == 1) {
 		auto n = 0;
 		for (auto const &repo : repos) {
-			std::cout << "echo " << n++ << ": " << repo.GetName() << "\n";
+			cout << "echo " << n++ << ": " << repo.GetName();
+			cout << endl;
 		}
 
 		return 0;
@@ -39,12 +48,12 @@ int main(int argc, char* argv[]) {
 
     const auto repoNum = boost::lexical_cast<int>(argv[1]);
 	if (repoNum < 0 || repoNum >= repos.size()) {
-		std::cerr << "Invalid repo number '" << repoNum << "'\n";
+		cout << "Invalid repo number '" << repoNum << endl;
 		return -1;
 	}
 
 	fs::path dest = root/"repos"/repos[repoNum].GetName();
-	std::cout << "cd " << dest.c_str() << std::endl;
+	cout << "cd " << dest.c_str() << endl;
 
 	return 0;
 }

@@ -7,20 +7,18 @@
 
 #include "GoRepo/Repo.hpp"
 
-namespace GoRepo
-{
-    using namespace boost;
-    namespace fs = boost::filesystem;
+namespace GoRepo {
 
-    class RepoSet
-    {
-    private:
-        std::vector<Repo> _repos;
+namespace fs = boost::filesystem;
 
-    public:
-        explicit RepoSet(const fs::path& root);
+class RepoSet {
+private:
+    std::vector<Repo> _repos;
 
-        const std::vector<Repo> &GetRepos() const { return _repos; }
-    };
-}
+public:
+    explicit RepoSet(const fs::path& root);
 
+    const std::vector<Repo> &GetRepos() const { return _repos; }
+};
+
+}  // namespace GoRepo
