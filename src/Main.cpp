@@ -10,6 +10,7 @@
 
 namespace fs = boost::filesystem;
 
+using std::string;
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -18,7 +19,25 @@ using std::getenv;
 using GoRepo::Repo;
 using GoRepo::RepoSet;
 
+enum class Color {
+    Red,
+    Green,
+    Blue,
+    LightGrey,
+};
+
+std::map<Color, string> Colors;
+
+string SetColor(Color color) {
+    return "'\\033[" + Colors[color] + "m' ";
+}
+
 int main(int argc, char* argv[]) {
+    Colors[Color::Red] = "0;31";
+    Colors[Color::Green] = "0;32";
+    Colors[Color::Blue] = "1;34";
+    Colors[Color::LightGrey] = "0;37";
+
 	const auto* env{ getenv("WORK_ROOT") };
 	if (env == nullptr) {
 		cerr << "$WORK_ROOT not set\n";
@@ -39,7 +58,7 @@ int main(int argc, char* argv[]) {
 	if (argc == 1) {
 		auto n = 0;
 		for (auto const &repo : repos) {
-			cout << "echo " << n++ << ": " << repo.GetName();
+			cout << "echo -e " << SetColor(Color::Green) << n++ << SetColor(Color::LightGrey) << SetColor(Color::Blue) << repo.GetName();
 			cout << endl;
 		}
 
