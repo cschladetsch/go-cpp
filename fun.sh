@@ -2,13 +2,16 @@
 
 echo Definining $WORK_DIR functions
 
-echo Adding co
-co() {
+mkdir -p ~/tmp
+
+echo Adding go
+go() {
 	# TODO: move to ~/bin, add to PATH
-	cmd=$WORK_ROOT/src/go-cpp/build/go-repo
+	cmd=$WORK_ROOT/repos/go-cpp/cmake-build-debug/go-repo
 
 	if [ -z "$*" ]; then
-		$cmd
+		results=`$cmd`
+		eval $results
 		return 0
 	fi
 
@@ -21,9 +24,10 @@ co() {
 	eval $cmd $* 1> $next 2> $cmds
 
 	# used to strip out null bytes
-	args=$WORK_DIR/`cat $next`
-	cd $args
+	args=`cat $next`
+	echo args=$args
+	eval $args
 }
 
-export co
+export -f go
 

@@ -11,7 +11,6 @@
 using namespace GoRepo;
 
 int main(int argc, char* argv[]) {
-    const char *WORK_ROOT = "WORK_ROOT";
 	const auto* env{ std::getenv("WORK_ROOT") };
 	if (env == 0) {
 		std::cerr << "WORK_ROOT not set\n";
@@ -44,7 +43,8 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	std::cout << "cd " << repos[repoNum].GetName() << std::endl;
+	fs::path dest = root/"repos"/repos[repoNum].GetName();
+	std::cout << "cd " << dest.c_str() << std::endl;
 
 	return 0;
 }
