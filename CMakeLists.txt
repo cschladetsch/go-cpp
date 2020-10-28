@@ -5,6 +5,7 @@ project(${proj_name})
 add_compile_options(-std=c++11 -g)
 
 set(Boost_USE_STATIC_LIBS ON)
+SET(CMAKE_CXX_FLAGS -pthread)
 
 # CMake can't find boost without some help, as there's no standard places for it to look for installed 3rd party libraries
 if (WIN32)
@@ -17,7 +18,9 @@ include_directories("include")
 include_directories("modules/libgit2/include")
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
-add_executable(${proj_name} ${sources} include/go-repo/repo.hpp src/Repo.cpp)
+add_executable(${proj_name} ${sources})
 
-target_link_libraries(${proj_name} PUBLIC Boost::filesystem ~/dev/src/go-cpp/modules/libgit2/build/libgit2.a)
+set(SSL_LIBS -lssl -lcrypto)
+set(LIBS ${PROJECT_SOURCE_DIR}/modules/libgit2/build/libgit2.a ${SSL_LIBS})
+target_link_libraries(${proj_name} PUBLIC Boost::filesystem ${LIBS})
 

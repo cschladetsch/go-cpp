@@ -1,26 +1,41 @@
-# co - Go to Repository ![logo](res/gorepo_logo.jpg)
-[![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/GoRepo/badge)](https://www.codefactor.io/repository/github/cschladetsch/GoRepo)
+# go - Goto Repository ![logo](res/gorepo_logo.jpg)
+[![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/go-cpp/badge)](https://www.codefactor.io/repository/github/cschladetsch/go-cpp)
 [![License](https://img.shields.io/github/license/cschladetsch/gorepo.svg?label=License&maxAge=86400)](./LICENSE.txt)
 ![Release](https://img.shields.io/github/release/cschladetsch/gorepo.svg?label=Release&maxAge=60)
 
-Provides a fast and simple way to move between `git` repositories stored in an environment variable called `WORK_DIR`. Written in portable C++ using `boost::filesystem`.
+Provides a fast and simple way to move between `git` repositories stored in `$WORK_DIR/repos`. Written in portable C++ using `boost::filesystem`.
 
-This is all a WIP made for educational purposes at the moment. See my [YoutTube Channel](https://www.youtube.com/sp4m) for details.
+See my [YoutTube Channel](https://www.youtube.com/sp4m) for details.
 
-## Install Build and Run
+## Install, Build and Run
+Follow these instructions to build the project to get a command-line executable.
+
+### Setup and Build LibGit2 submodule
+From the root folder:
+```bash
+$ git submodule init
+$ git submodule update
+$ sudo apt install libssl-dev
+$ cd modules/libgit2
+$ mkdir build && cd  build && cmake -DBUILD_SHARED_LIBS=OFF .. && make
+```
+This will build the required `libgit2.a` library.
+
+### Setup Boost
 With a system using apt, use:
 ```
 $ sudo apt install libboost-filessytem-dev
 ```
 To get the required single boost library.
 
+### Building
 Use *CMake*:
 
 ```bash
 $ mkdir -p build && cd build && cmake ..
 ```
 
-For ease of use, he `./b` script will build the app (using `CMake`, then `make`), and the `./r` script will build and run the app if the build worked.
+For ease of use, the `./b` script will build the app (using `CMake`, then `make`), and the `./r` script will build and run the app if the build worked.
 
 ## Script Wrapper
 

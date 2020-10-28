@@ -1,11 +1,13 @@
+// (C) 2020 christian@schladetsch.com
+
 #pragma once
 
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-#include "go-repo/repo.hpp"
+#include "GoRepo/Repo.hpp"
 
-namespace go_repo
+namespace GoRepo
 {
     using namespace boost;
     namespace fs = boost::filesystem;
