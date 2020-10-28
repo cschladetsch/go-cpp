@@ -1,2 +1,0 @@
-./b && build/go-repo $*
-

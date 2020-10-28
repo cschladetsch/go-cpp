@@ -1,8 +1,8 @@
 #!/bin/bash -e -c
 
-echo Definining $WORK_ROOT functions
+#echo Definining $WORK_ROOT functions
+#echo Adding go
 
-echo Adding go
 go() {
 	tmp=$WORK_ROOT/tmp
 	result=$tmp/go-cmds
