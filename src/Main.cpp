@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 	if (argc == 1) {
 		auto n = 0;
 		for (auto const &repo : repos) {
-			std::cout << "echo " << n++ << ": " << repo.GetName() << std::endl;
+			std::cout << "echo " << n++ << ": " << repo.GetName() << "\n";
 		}
 
 		return 0;
