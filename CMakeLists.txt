@@ -16,6 +16,7 @@ find_package(Boost 1.5 REQUIRED COMPONENTS filesystem)
 
 include_directories("include")
 include_directories("modules/libgit2/include")
+include_directories("modules/libgit2/build/src")
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
 add_executable(${proj_name} ${sources})

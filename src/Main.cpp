@@ -1,6 +1,8 @@
 // (C) 2020 christian@schladetsch.com
 
 #include <iostream>
+#include <iomanip>
+#include <ios>
 #include <cstdlib>
 
 #include <boost/filesystem.hpp>
@@ -24,6 +26,10 @@ enum class Color {
     Green,
     Blue,
     LightGrey,
+    Dim,
+    Bold,
+    Italic,
+    Reset,
 };
 
 std::map<Color, string> Colors;
@@ -32,11 +38,19 @@ string SetColor(Color color) {
     return "'\\033[" + Colors[color] + "m' ";
 }
 
+std::ostream& operator<<(std::ostream &out, Color color) {
+    return out << SetColor(color);
+}
+
 int main(int argc, char* argv[]) {
     Colors[Color::Red] = "0;31";
     Colors[Color::Green] = "0;32";
     Colors[Color::Blue] = "1;34";
     Colors[Color::LightGrey] = "0;37";
+    Colors[Color::Bold] = "1";
+    Colors[Color::Dim] = "2";
+    Colors[Color::Italic] = "3";
+    Colors[Color::Reset] = "0";
 
 	const auto* env{ getenv("WORK_ROOT") };
 	if (env == nullptr) {
@@ -58,8 +72,13 @@ int main(int argc, char* argv[]) {
 	if (argc == 1) {
 		auto n = 0;
 		for (auto const &repo : repos) {
-			cout << "echo -e " << SetColor(Color::Green) << n++ << SetColor(Color::LightGrey) << SetColor(Color::Blue) << repo.GetName();
-			cout << endl;
+		    string status = repo.GetStatusString();
+		    string branchName = repo.GetBranchName();
+
+			cout << "echo -e " << Color::Red << status << ' ' << Color::Green << n++ << ' '
+			    << Color::Bold << Color::Blue << std::setw(30) << std::left << std::setfill('.') << repo.GetName()
+			    << '\t' << Color::Reset
+			    << Color::LightGrey << Color::Dim << " @" << branchName << Color::Reset << endl;
 		}
 
 		return 0;

@@ -14,10 +14,13 @@ namespace fs = boost::filesystem;
 class Repo {
 private:
     fs::path _path;
-    git_repository *_repo = 0;
+    git_repository *_repo = nullptr;
 
 public:
     explicit Repo(const fs::directory_entry& dir);
+    ~Repo() {
+        //git_repository_free(_repo);
+    }
 
     bool HasChangedFiles() const;
     bool HasNewFiles() const;
@@ -25,6 +28,9 @@ public:
     std::string GetName() const {
         return fs::basename(_path);
     }
+
+    std::string GetStatusString() const;
+    std::string GetBranchName() const;
 };
 
 }  // namespace GoRepo
