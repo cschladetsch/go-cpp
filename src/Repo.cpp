@@ -37,7 +37,8 @@ namespace GoRepo {
     std::string Repo::GetBranchName() const {
         git_reference *reference = nullptr;
         git_repository_head(&reference, _repo);
-        std::string name = git_reference_name(reference);
+        const char *name = nullptr;
+        git_branch_name(&name, reference);
         return name;
     }
 

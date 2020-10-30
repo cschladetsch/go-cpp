@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
     try {
         TerminalColors::CreateColors();
 
+        // TODO(cjs) add a Error(...) function
         const auto* env{ getenv("WORK_ROOT") };
         if (env == nullptr) {
             cerr << "$WORK_ROOT not set\n";
