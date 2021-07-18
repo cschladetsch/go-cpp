@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
             return -1;
         }
 
-        git_libgit2_init();
+        //git_libgit2_init();
 
         const RepoSet go(root/"repos");
         auto repos = go.GetRepos();

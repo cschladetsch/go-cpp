@@ -1,12 +1,12 @@
 // (C) 2020 christian@schladetsch.com
 
 #include "GoRepo/Repo.hpp"
-#include "../modules/libgit2/src/refs.h"
+//#include "../modules/libgit2/src/refs.h"
 
 namespace GoRepo {
     Repo::Repo(const fs::directory_entry& dir) {
         _path = dir.path();
-        git_repository_open(&_repo, _path.c_str());
+        //git_repository_open(&_repo, _path.c_str());
     }
 
     bool Repo::HasChangedFiles() const {
@@ -18,6 +18,7 @@ namespace GoRepo {
     }
 
     std::string Repo::GetStatusString() const {
+        /*
         git_status_options opts = GIT_STATUS_OPTIONS_INIT;
         git_status_list *statuses = NULL;
         git_status_list_new(&statuses, _repo, &opts);
@@ -32,14 +33,19 @@ namespace GoRepo {
         }
 
         return "=";
+        */
+       return "";
     }
 
     std::string Repo::GetBranchName() const {
+        /*
         git_reference *reference = nullptr;
         git_repository_head(&reference, _repo);
         const char *name = nullptr;
         git_branch_name(&name, reference);
         return name;
+        */
+       return "";
     }
 
 }  // namespace GoRepo

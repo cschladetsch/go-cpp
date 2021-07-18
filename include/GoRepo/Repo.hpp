@@ -5,7 +5,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-#include "git2.h"
+//#include "git2.h"
 
 namespace GoRepo {
 
@@ -14,7 +14,7 @@ namespace fs = boost::filesystem;
 class Repo {
 private:
     fs::path _path;
-    git_repository *_repo = nullptr;
+    //git_repository *_repo = nullptr;
 
 public:
     explicit Repo(const fs::directory_entry& dir);

@@ -1,4 +1,4 @@
-#!/bin/bash -e -c
+#!/bin/bash 
 
 #echo Definining $WORK_ROOT functions
 #echo Adding go
