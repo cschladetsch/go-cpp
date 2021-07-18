@@ -23,6 +23,8 @@ include_directories("include")
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
 
+message(STATUS ${sources})
+
 add_executable(${proj_name} ${sources})
 
 set(SSL_LIBS -lssl -lcrypto)
