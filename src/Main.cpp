@@ -28,13 +28,13 @@ int main(int argc, char* argv[]) {
         // TODO(cjs) add a Error(...) function
         const auto* env{ getenv("WORK_ROOT") };
         if (env == nullptr) {
-            cerr << "$WORK_ROOT not set\n";
+            cout << "$WORK_ROOT not set\n";
             return -1;
         }
 
         const fs::path root{ env };
         if (!exists(root)) {
-            cerr << "$WORK_ROOT='" << root.c_str() << "' doesn't exist.\n";
+            cout << "$WORK_ROOT='" << root.c_str() << "' doesn't exist.\n";
             return -1;
         }
 
@@ -49,10 +49,10 @@ int main(int argc, char* argv[]) {
                 string status = repo.GetStatusString();
                 string branchName = repo.GetBranchName();
 
-                cout << "echo -e " << rang::fg::red << status << ' ' << fg::green << n++ << ' '
-                    << style::bold << fg::blue << std::setw(30) << std::left << std::setfill('.') << repo.GetName()
+                cout << rang::fg::red << status << ' ' << fg::green << std::setw(2) << std::setfill(' ') << std::right << n++ << ' '
+                    << style::bold << fg::blue << std::setw(40) << std::left << std::setfill(' ') << repo.GetName()
                     << '\t' << fg::reset
-                    << fg::gray << style::dim << " @" << branchName << fg::reset << endl;
+                    << fg::gray << style::dim << " @" << branchName << fg::reset << style::reset << endl;
             }
 
             return 0;
@@ -60,17 +60,17 @@ int main(int argc, char* argv[]) {
 
         const auto repoNum = boost::lexical_cast<int>(argv[1]);
         if (repoNum < 0 || repoNum >= repos.size()) {
-            cout << "echo -e " << fg::red << "Error: " << fg::gray << style::dim << "Invalid repo number "
+            cout <<  fg::red << "Error: " << fg::gray << style::dim << "Invalid repo number "
                  << repoNum << endl;
             return -1;
         }
-        fs::path dest = root/"repos"/repos[repoNum].GetName();
-        cout << "cd " << dest.c_str() << endl;
 
+        fs::path dest = root/"repos"/repos[repoNum].GetName();
+        cerr << "cd " << dest.c_str() << endl;
     } catch (boost::bad_lexical_cast& e) {
-        cout << "echo -e " << fg::red << "Error: Not a number: " << fg::gray << style::dim << e.what() << endl;
+        cout <<  fg::red << "Error: Not a number: " << fg::gray << style::dim << e.what() << endl;
     } catch (std::exception& e) {
-        cout << "echo -e " << fg::red << "Error: " << fg::gray << style::dim << e.what() << endl;
+        cout <<  fg::red << "Error: " << fg::gray << style::dim << e.what() << endl;
 	}
 
 	return 0;

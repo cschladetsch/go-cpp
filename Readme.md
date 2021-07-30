@@ -49,7 +49,7 @@ Simply source `fun.sh` in your bootstrap process for your shell at the moment, l
 
 ## TODO
 - [x] Port to Windows (git-bash).
-- [ ] Add colored output by default
+- [x] Add colored output by default
   - [ ] Add `go -nc` to not use color output
 - [ ] Add persistence of location within a repo, so when you switch back to it, you do not always start at the root of the repo.
 - [ ] Add `.enter` and `.leave` scripts

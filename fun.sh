@@ -10,7 +10,7 @@ go() {
 
 	mkdir -p $tmp
 
-	eval $cmd $* > $result
+	eval $cmd $* 2> $result
 	source $result
 }
 
