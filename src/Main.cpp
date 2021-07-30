@@ -9,7 +9,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "GoRepo/RepoSet.hpp"
-#include "GoRepo/TerminalColors.hpp"
+#include "GoRepo/rang.hpp"
 
 namespace fs = boost::filesystem;
 
@@ -21,13 +21,10 @@ using std::getenv;
 
 using GoRepo::Repo;
 using GoRepo::RepoSet;
-using GoRepo::Color;
-using GoRepo::TerminalColors;
+using namespace rang;
 
 int main(int argc, char* argv[]) {
     try {
-        TerminalColors::CreateColors();
-
         // TODO(cjs) add a Error(...) function
         const auto* env{ getenv("WORK_ROOT") };
         if (env == nullptr) {
@@ -52,10 +49,10 @@ int main(int argc, char* argv[]) {
                 string status = repo.GetStatusString();
                 string branchName = repo.GetBranchName();
 
-                cout << "echo -e " << Color::Red << status << ' ' << Color::Green << n++ << ' '
-                    << Color::Bold << Color::Blue << std::setw(30) << std::left << std::setfill('.') << repo.GetName()
-                    << '\t' << Color::Reset
-                    << Color::LightGrey << Color::Dim << " @" << branchName << Color::Reset << endl;
+                cout << "echo -e " << rang::fg::red << status << ' ' << fg::green << n++ << ' '
+                    << style::bold << fg::blue << std::setw(30) << std::left << std::setfill('.') << repo.GetName()
+                    << '\t' << fg::reset
+                    << fg::gray << style::dim << " @" << branchName << fg::reset << endl;
             }
 
             return 0;
@@ -63,7 +60,7 @@ int main(int argc, char* argv[]) {
 
         const auto repoNum = boost::lexical_cast<int>(argv[1]);
         if (repoNum < 0 || repoNum >= repos.size()) {
-            cout << "echo -e " << Color::Red << "Error: " << Color::LightGrey << Color::Dim << "Invalid repo number "
+            cout << "echo -e " << fg::red << "Error: " << fg::gray << style::dim << "Invalid repo number "
                  << repoNum << endl;
             return -1;
         }
@@ -71,9 +68,9 @@ int main(int argc, char* argv[]) {
         cout << "cd " << dest.c_str() << endl;
 
     } catch (boost::bad_lexical_cast& e) {
-        cout << "echo -e " << Color::Red << "Error: Not a number: " << Color::LightGrey << Color::Dim << e.what() << endl;
+        cout << "echo -e " << fg::red << "Error: Not a number: " << fg::gray << style::dim << e.what() << endl;
     } catch (std::exception& e) {
-        cout << "echo -e " << Color::Red << "Error: " << Color::LightGrey << Color::Dim << e.what() << endl;
+        cout << "echo -e " << fg::red << "Error: " << fg::gray << style::dim << e.what() << endl;
 	}
 
 	return 0;

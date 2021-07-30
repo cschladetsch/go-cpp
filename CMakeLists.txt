@@ -19,18 +19,13 @@ find_package(Boost 1.5 REQUIRED COMPONENTS filesystem)
 #include_directories("include" "modules/libgit2/include" "modules/libgit2/src")
 
 #add_subdirectory("modules/libgit2")
+
 include_directories("include")
-<<<<<<< HEAD
-=======
 #include_directories("modules/libgit2/include")
->>>>>>> d31d6de (Remove use of Git2 lib for now. Commented out, not removed.)
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
 
-<<<<<<< HEAD
-message(STATUS ${sources})
-
-add_executable(${proj_name} ${sources})
+add_executable(${proj_name} ${sources} include/GoRepo/rang.hpp)
 
 #set(SSL_LIBS -lssl -lcrypto)
 #set(LIBS ${PROJECT_SOURCE_DIR}/modules/libgit2/build/libgit2.a ${SSL_LIBS})
