@@ -45,14 +45,19 @@ int main(int argc, char* argv[]) {
 
         if (argc == 1) {
             auto n = 0;
+
+            // TODO: why does this crash?
+//            std::sort(repos.begin(), repos.end(), [](Repo const &a, Repo const &b) {
+//                return strcmp(a.GetName().c_str(), b.GetName().c_str());
+//            });
+
             for (auto const &repo : repos) {
                 string status = repo.GetStatusString();
                 string branchName = repo.GetBranchName();
 
-                cout << rang::fg::red << status << ' ' << fg::green << std::setw(2) << std::setfill(' ') << std::right << n++ << ' '
+                cout << fg::red << status << ' ' << fg::green << std::setw(2) << std::setfill(' ') << std::right << n++ << ' '
                     << style::bold << fg::blue << std::setw(40) << std::left << std::setfill(' ') << repo.GetName()
-                    << '\t' << fg::reset
-                    << fg::gray << style::dim << " @" << branchName << fg::reset << style::reset << endl;
+                    << fg::reset << fg::gray << style::dim << " @" << branchName << fg::reset << style::reset << endl;
             }
 
             return 0;

@@ -25,7 +25,7 @@ include_directories("include")
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.cpp")
 
-add_executable(${proj_name} ${sources} include/GoRepo/rang.hpp)
+add_executable(${proj_name} ${sources} include/GoRepo/rang.hpp include/GoRepo/subprocess.hpp)
 
 #set(SSL_LIBS -lssl -lcrypto)
 #set(LIBS ${PROJECT_SOURCE_DIR}/modules/libgit2/build/libgit2.a ${SSL_LIBS})

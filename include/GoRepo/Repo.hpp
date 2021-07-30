@@ -21,6 +21,14 @@ public:
     ~Repo() {
         //git_repository_free(_repo);
     }
+    Repo &operator=(const Repo &other) {
+        _path = other._path;
+        return *this;
+    }
+
+    friend bool operator<(const Repo& a, const Repo &b) {
+        return a._path < b._path;
+    }
 
     bool HasChangedFiles() const;
     bool HasNewFiles() const;
