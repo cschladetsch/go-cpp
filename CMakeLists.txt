@@ -31,4 +31,4 @@ add_executable(${proj_name} ${sources} include/GoRepo/rang.hpp include/GoRepo/su
 #set(LIBS ${PROJECT_SOURCE_DIR}/modules/libgit2/build/libgit2.a ${SSL_LIBS})
 #set(LIBS ${SSL_LIBS})
 
-target_link_libraries(${proj_name} PUBLIC Boost::filesystem)# ~/dev/src/go-cpp/modules/libgit2/build/libgit2.a)
+target_link_libraries(${proj_name} PUBLIC Boost::system Boost::filesystem)# ~/dev/src/go-cpp/modules/libgit2/build/libgit2.a)
